@@ -1,5 +1,5 @@
 // Offline support: the app shell is cached on install, fonts are cached the first time they load.
-const CACHE = "ai-academy-v1";
+const CACHE = "ai-academy-v2";
 const SHELL = [
   "./",
   "./index.html",
