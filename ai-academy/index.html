@@ -5,6 +5,17 @@
 <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
 <title>AI Consultant Academy</title>
 <meta name="claude:viewport-fit-sides" content="cover">
+<meta name="description" content="Lessons, quizzes and client cases for aspiring AI and automation consultants.">
+<link rel="manifest" href="manifest.webmanifest">
+<link rel="icon" type="image/svg+xml" href="icons/icon.svg">
+<link rel="icon" type="image/png" sizes="32x32" href="icons/favicon-32.png">
+<link rel="apple-touch-icon" href="icons/apple-touch-icon.png">
+<meta name="apple-mobile-web-app-capable" content="yes">
+<meta name="mobile-web-app-capable" content="yes">
+<meta name="apple-mobile-web-app-title" content="AI Academy">
+<meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
+<meta name="theme-color" content="#f3f5f7" media="(prefers-color-scheme: light)">
+<meta name="theme-color" content="#0f151b" media="(prefers-color-scheme: dark)">
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Bricolage+Grotesque:opsz,wght@12..96,500;12..96,700&family=IBM+Plex+Sans:ital,wght@0,400;0,500;0,600;1,400&family=IBM+Plex+Mono:wght@400;500&display=swap">
@@ -53,7 +64,7 @@ body {
   font: 400 16px/1.6 var(--font-body);
   padding-left: max(16px, env(safe-area-inset-left, 0px));
   padding-right: max(16px, env(safe-area-inset-right, 0px));
-  padding-block: 0 64px;
+  padding-block: env(safe-area-inset-top, 0px) calc(64px + env(safe-area-inset-bottom, 0px));
 }
 body::before {
   content: ""; position: fixed; inset: 0 0 auto; height: env(safe-area-inset-top, 0px);
@@ -85,7 +96,16 @@ button { font: inherit; color: inherit; cursor: pointer; }
   display: flex; align-items: center; gap: 10px; text-decoration: none; color: var(--ink);
   font-family: var(--font-display); font-weight: 700; font-size: 1.05rem; margin-right: auto;
 }
-.brand-mark { width: 28px; height: 28px; flex: none; }
+.brand-mark { width: 28px; height: 28px; flex: none; border-radius: 7px; }
+.install-tip {
+  display: grid; grid-template-columns: 44px 1fr auto; gap: 12px; align-items: center;
+  background: var(--surface); border: 1px solid var(--line); border-radius: var(--radius);
+  padding: 12px 14px; margin-bottom: 28px;
+}
+.install-tip img { width: 44px; height: 44px; border-radius: 10px; }
+.install-tip p { font-size: 0.9rem; color: var(--muted); }
+.install-tip b { color: var(--ink); font-weight: 600; }
+.install-tip button { border: 0; background: transparent; color: var(--muted); font-size: 1.2rem; padding: 4px 8px; }
 .nav { display: flex; gap: 4px; }
 .nav a {
   text-decoration: none; color: var(--muted); padding: 6px 10px; border-radius: 6px; font-size: 0.92rem;
@@ -267,13 +287,7 @@ details.model .lesson { gap: 12px; }
 <header class="topbar">
   <div class="wrap">
     <a class="brand" href="#home">
-      <svg class="brand-mark" viewBox="0 0 28 28" aria-hidden="true">
-        <rect x="1" y="1" width="26" height="26" rx="7" fill="var(--accent)"></rect>
-        <circle cx="8" cy="14" r="3" fill="var(--surface)"></circle>
-        <circle cx="20" cy="8.5" r="3" fill="var(--surface)"></circle>
-        <circle cx="20" cy="19.5" r="3" fill="var(--surface)"></circle>
-        <path d="M10.6 12.6 17.4 9.9M10.6 15.4l6.8 2.7" stroke="var(--surface)" stroke-width="1.6" fill="none"></path>
-      </svg>
+      <img class="brand-mark" src="icons/icon.svg" alt="" width="28" height="28">
       AI Consultant Academy
     </a>
     <nav class="nav" aria-label="Main">
@@ -851,6 +865,13 @@ function updateChrome(view) {
 /* ------------------------------------------------------------------
    Home: the learning track
 ------------------------------------------------------------------- */
+function showInstallTip() {
+  const iOS = /iPhone|iPad|iPod/.test(navigator.userAgent) ||
+    (navigator.platform === "MacIntel" && navigator.maxTouchPoints > 1);
+  const standalone = navigator.standalone === true || matchMedia("(display-mode: standalone)").matches;
+  return iOS && !standalone && !state.hideInstallTip && location.protocol.startsWith("http");
+}
+
 function renderHome() {
   const xp = totalXP();
   const { current, next } = levelFor(xp);
@@ -861,6 +882,12 @@ function renderHome() {
   const nextMod = MODULES.find(m => !moduleDone(m));
 
   app.innerHTML = `
+    ${showInstallTip() ? `
+    <aside class="install-tip" id="install-tip">
+      <img src="icons/apple-touch-icon.png" alt="">
+      <p><b>Install on your iPhone.</b> Tap the Share button in Safari, then <b>Add to Home Screen</b>. The app then opens full screen and works offline.</p>
+      <button type="button" id="install-dismiss" aria-label="Hide install tip">×</button>
+    </aside>` : ""}
     <section class="hero">
       <div>
         <p class="eyebrow">Semi-beginner → intermediate · ${MODULES.length} modules</p>
@@ -915,6 +942,11 @@ function renderHome() {
       <p>Progress is saved in this browser only.</p>
       <button class="btn" id="reset-btn" type="button">Reset progress</button>
     </div>`;
+
+  const dismiss = document.getElementById("install-dismiss");
+  if (dismiss) dismiss.addEventListener("click", () => {
+    state.hideInstallTip = true; saveState(); document.getElementById("install-tip").remove();
+  });
 
   const resetBtn = document.getElementById("reset-btn");
   resetBtn.addEventListener("click", () => {
@@ -1190,6 +1222,10 @@ function render() {
 }
 window.addEventListener("hashchange", () => { render(); window.scrollTo({ top: 0 }); });
 render();
+
+if ("serviceWorker" in navigator && location.protocol.startsWith("http")) {
+  navigator.serviceWorker.register("sw.js").catch(() => {});
+}
 </script>
 </body>
 </html>
