@@ -1,0 +1,121 @@
+{
+  "schemaVersion": 1,
+  "source": "content/consulting-practice-backlog.md and content/reading-path.md (handoff revision 1.2)",
+  "plannedBriefs": [
+    {
+      "id": "CP01",
+      "status": "planned",
+      "title": "Compare two accounts of the work",
+      "missionIds": ["M01-02", "M01-03"],
+      "purpose": "Learn how to find the actual bottleneck while respecting the people doing the work.",
+      "savedResult": "Evidence notes, neutral follow-up questions and a revised process map.",
+      "sourceIds": ["AD1"],
+      "briefPath": "handoff/content/consulting-practice-backlog.md"
+    },
+    {
+      "id": "CP02",
+      "status": "planned",
+      "title": "Choose and validate one opportunity",
+      "missionIds": ["M01-05", "M02-05"],
+      "purpose": "Make a provisional recommendation and improve it with client knowledge.",
+      "savedResult": "A ranked shortlist and an agreed or still-provisional pilot choice.",
+      "sourceIds": ["AD1"],
+      "briefPath": "handoff/content/consulting-practice-backlog.md"
+    },
+    {
+      "id": "CP03",
+      "status": "planned",
+      "title": "Explain value without inflating it",
+      "missionIds": ["M04-04"],
+      "purpose": "Connect improvements to benefits the client can actually realise.",
+      "savedResult": "A capacity estimate and a separately justified financial case.",
+      "sourceIds": ["AD1"],
+      "briefPath": "handoff/content/consulting-practice-backlog.md"
+    },
+    {
+      "id": "CP04",
+      "status": "planned",
+      "title": "Help the client make one decision",
+      "missionIds": ["M05-01"],
+      "purpose": "Explain the evidence and a proportionate next step clearly.",
+      "savedResult": "A concise decision brief.",
+      "sourceIds": ["AD1"],
+      "briefPath": "handoff/content/consulting-practice-backlog.md"
+    },
+    {
+      "id": "CP05",
+      "status": "planned",
+      "title": "Define the assessment and delivery partnership",
+      "missionIds": ["M05-02", "M05-03"],
+      "purpose": "Understand how to sell useful investigation and coordinate implementation within demonstrated capability.",
+      "savedResult": "A bounded offer and responsibility/handover note.",
+      "sourceIds": ["AD1"],
+      "briefPath": "handoff/content/consulting-practice-backlog.md"
+    }
+  ],
+  "readings": [
+    {
+      "id": "JJ10",
+      "missionIds": ["M02-03"],
+      "label": "Jon Jones — What Is AI Automation?",
+      "url": "https://jonjones.ai/ai-automation/what-is-ai-automation/",
+      "question": "Who decides the next step? Which part needs a model, and which can use a rule?"
+    },
+    {
+      "id": "JJ5",
+      "missionIds": ["M03-04"],
+      "label": "Jon Jones — Failure-alert account",
+      "url": "https://jonjones.ai/ai-automation/daily-tool-thursday-telegram-bot-api-alerts-2026-10-08/",
+      "question": "What evidence would show that the intended result happened? Who or what notices if the worker stops?"
+    },
+    {
+      "id": "JJ7",
+      "missionIds": ["M05-02"],
+      "label": "Jon Jones — AI Automation Consultant",
+      "url": "https://jonjones.ai/business/ai-automation-consultant/",
+      "question": "Who will operate, change and repair the work after delivery?"
+    },
+    {
+      "id": "JJ6",
+      "missionIds": ["M02-04", "M03-04"],
+      "label": "Jon Jones — Human involvement and the approval queue",
+      "url": "https://jonjones.ai/ai-automation/daily-wednesday-wisdom-human-in-the-loop-ai-agent-2026-10-21/",
+      "question": "What counts as approval? Draw the point where a required decision actually stops an action. Keep ordinary notifications separate."
+    },
+    {
+      "id": "JJ8",
+      "missionIds": ["M05-02"],
+      "label": "Jon Jones — Three purchasing arrangements",
+      "url": "https://jonjones.ai/business/ai-automation-services/",
+      "question": "What exactly is the client buying? Compare who operates the system, pays its ongoing costs, and can take over or exit. Do not adopt the article's prices as a local benchmark."
+    },
+    {
+      "id": "JJ11",
+      "missionIds": ["M05-02"],
+      "label": "Jon Jones — Build-versus-hire and a paid trial",
+      "url": "https://jonjones.ai/business/hire-ai-developers/",
+      "question": "What would make a small paid build convincing? Describe a finished result another person can inspect."
+    },
+    {
+      "id": "JJ12",
+      "missionIds": ["M03-02"],
+      "label": "Jon Jones — A producer/worker learning account",
+      "url": "https://jonjones.ai/ai/six-months-from-hackathon-to-production/",
+      "question": "How do I learn the technical vocabulary? Explain the observed problem, the proposed pattern, and the test that would demonstrate improvement."
+    },
+    {
+      "id": "JJ9",
+      "missionIds": ["M05-02"],
+      "label": "Jon Jones — AI and consulting",
+      "url": "https://jonjones.ai/business/ai-and-consulting-solopreneurs-guide-2026/",
+      "question": "How could I package a repeatable deliverable? Define one outcome, scope, client contribution and turnaround."
+    },
+    {
+      "id": "AD1",
+      "missionIds": ["M01-01", "M01-02", "M01-03", "M01-04", "M01-05", "M02-05", "M04-04", "M05-01", "M05-02", "M05-03", "M05-04"],
+      "label": "Andrew Dunn — AI consulting course (video)",
+      "url": "https://www.youtube.com/watch?v=5aZZNskTsx0",
+      "question": "After a relevant part: what does the owner need; what does the operator actually do; which assumption could change the preferred option; or what decision should the client make next? Do not import its fee minimums or revenue forecasts as benchmarks."
+    }
+  ]
+}

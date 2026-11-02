@@ -1,0 +1,253 @@
+{
+  "schemaVersion": 1,
+  "purpose": "Suggest a narrow exercise from an observed task error, without assigning a general skill level.",
+  "activationRules": [
+    "An authored multi-select answer key can identify a missed unsafe claim. The mapping applies to that selection only, not to the quality of the learner's prose.",
+    "For free text, activate a suggestion only when the learner records a rubric observation or explicitly chooses to act on external feedback.",
+    "An empty field is incomplete evidence, not a skill diagnosis. Selecting a supported fact as unsafe prompts a source-comparison hint, not a fabricated error score.",
+    "Show at most one suggested drill at a time and explain the evidence behind it. Other lessons remain available.",
+    "External AI feedback remains external_ai_unverified even after the learner chooses a drill. Completion of a drill does not establish competence."
+  ],
+  "errors": [
+    {
+      "id": "UNSUPPORTED_COMMITMENT",
+      "label": "A request became a promise",
+      "observation": "A booking, price approval, or delivery outcome is confirmed without the required evidence or authority.",
+      "lessonIds": [
+        "L01",
+        "L03",
+        "L04",
+        "L06"
+      ],
+      "drill": {
+        "id": "D-COMMITMENT",
+        "title": "Separate request from confirmation",
+        "estimatedMinutes": 7,
+        "scenario": "Fictional case: a customer asks for a visit on Thursday. Staff have not checked the calendar. The draft says, 'You are booked for Thursday.'",
+        "instruction": "Write one sentence acknowledging the request and one sentence naming the check that must happen before confirmation. Then change the case: staff have approved the slot and authorised confirmation. Write the appropriate confirmation.",
+        "hint": "What evidence changed between the two cases?",
+        "selfCheck": "The first answer leaves the visit unconfirmed. The second acts on the supplied approval without unnecessary hesitation."
+      }
+    },
+    {
+      "id": "UNSUPPORTED_FACT",
+      "label": "A claim lost its source",
+      "observation": "A date, price, causal claim, or business rule appears as fact without support in the available inputs.",
+      "lessonIds": [
+        "L01",
+        "L02",
+        "L03",
+        "L04"
+      ],
+      "drill": {
+        "id": "D-SOURCES",
+        "title": "Trace five claims",
+        "estimatedMinutes": 8,
+        "scenario": "Fictional notes: an owner reports slow replies; 12 enquiries were logged; 5 lacked an address; no handling times or sales outcomes were measured. Draft: 'Replies are slow. Twelve enquiries arrived. Five lacked an address. Each took 20 minutes. The business lost three sales.'",
+        "instruction": "Label each sentence as an attributed report, supplied observation, or unsupported claim. Rewrite the last two as questions that would obtain useful evidence.",
+        "hint": "A plausible number still needs a source.",
+        "selfCheck": "The owner's report is attributed; the two counts are retained; time and lost-sales claims remain unestablished."
+      }
+    },
+    {
+      "id": "IGNORED_REQUIREMENT",
+      "label": "A stated need was changed",
+      "observation": "The output contradicts a requirement or assumes a capability that has not been checked.",
+      "lessonIds": [
+        "L01"
+      ],
+      "drill": {
+        "id": "D-REQUIREMENTS",
+        "title": "Keep the requirement intact",
+        "estimatedMinutes": 7,
+        "scenario": "Fictional transport request: seven passengers, one remaining seated in a wheelchair, seven cabin bags and two large cases. No vehicle has been selected.",
+        "instruction": "Make a four-line requirements checklist. Write one question for the operator that would establish suitability. Revise the statement 'A seven-seat car is enough.'",
+        "hint": "A seat count alone does not establish suitability for the whole request.",
+        "selfCheck": "The passenger's stated need is unchanged; luggage is included; suitability remains a question for the operator."
+      }
+    },
+    {
+      "id": "MISSING_INPUT",
+      "label": "Needed information is missing",
+      "observation": "A task proceeds without a necessary input, or repeatedly asks for information already supplied.",
+      "lessonIds": [
+        "L01",
+        "L02",
+        "L03",
+        "L05"
+      ],
+      "drill": {
+        "id": "D-INPUTS",
+        "title": "Ask only for what is missing",
+        "estimatedMinutes": 6,
+        "scenario": "Fictional intake rule: name, telephone, address, appliance, brand/model and fault are required. Message: 'I am Ada at 12 Sample Road. My Northline N2 washing machine leaks.'",
+        "instruction": "List the supplied fields. Draft the next question using only necessary missing details. State what a later booking step might need separately.",
+        "hint": "Do not ask for the address, appliance or model again.",
+        "selfCheck": "The immediate intake question requests a telephone number. Booking availability and timing are a later step, not invented facts."
+      }
+    },
+    {
+      "id": "SOLUTION_FIRST",
+      "label": "The tool was chosen too early",
+      "observation": "A requested chatbot or automation is treated as the established solution before the work is understood.",
+      "lessonIds": [
+        "L02",
+        "L04",
+        "L06"
+      ],
+      "drill": {
+        "id": "D-PROBLEM",
+        "title": "Turn a tool request into a hypothesis",
+        "estimatedMinutes": 8,
+        "scenario": "Fictional owner: 'We need a chatbot because quotes are slow.' Nothing else is known.",
+        "instruction": "Write two different explanations for the delay and one observation that would distinguish them. Draft a neutral first question.",
+        "hint": "Missing intake details and waiting for approval would imply different improvements.",
+        "selfCheck": "The note keeps multiple causes possible and requests a concrete example before recommending a tool."
+      }
+    },
+    {
+      "id": "LEADING_QUESTION",
+      "label": "The question suggests its answer",
+      "observation": "Discovery invites agreement with a preferred solution instead of eliciting evidence.",
+      "lessonIds": [
+        "L02"
+      ],
+      "drill": {
+        "id": "D-QUESTIONS",
+        "title": "Rewrite three discovery questions",
+        "estimatedMinutes": 7,
+        "scenario": "Draft questions: 'Would a chatbot save hours?'; 'Is your old software causing delays?'; 'Wouldn't automatic quotes be better?'",
+        "instruction": "Rewrite each question to request a recent example, sequence of events, or observed consequence. Avoid assuming the cause.",
+        "hint": "Start one question with 'Show me the last time…'.",
+        "selfCheck": "The owner can answer in a way that contradicts the learner's initial idea."
+      }
+    },
+    {
+      "id": "UNCLEAR_SUCCESS",
+      "label": "Success cannot yet be checked",
+      "observation": "An improvement is described as faster or better without defining the result, comparison, or measurement.",
+      "lessonIds": [
+        "L02",
+        "L06"
+      ],
+      "drill": {
+        "id": "D-MEASURE",
+        "title": "Make one outcome observable",
+        "estimatedMinutes": 10,
+        "scenario": "Fictional pilot goal: 'Make enquiry handling faster.' No baseline exists.",
+        "instruction": "Define the start and end of the task, active staff minutes, customer waiting time, and one quality check. Propose a small before/after log. Mark any proposed target as provisional.",
+        "hint": "Include checking and correction effort, and compare similar work.",
+        "selfCheck": "The measure could be repeated; speed cannot conceal incomplete or incorrect replies; savings are not claimed before observation."
+      }
+    },
+    {
+      "id": "MISSING_EXCEPTION",
+      "label": "The unusual case has no route",
+      "observation": "A process assumes ordinary inputs or lets an unsupported case proceed without a defined decision.",
+      "lessonIds": [
+        "L02",
+        "L03",
+        "L05",
+        "L06"
+      ],
+      "drill": {
+        "id": "D-EXCEPTIONS",
+        "title": "Give three cases a next step",
+        "estimatedMinutes": 8,
+        "scenario": "Fictional service rule: area A is served; other areas need staff assessment. Consider a complete request in A, a request with no address, and a complete request in area B.",
+        "instruction": "For each case name what is known, what is missing, and the next action. Keep area B's outcome open until assessment.",
+        "hint": "Collecting information and approving service are different decisions.",
+        "selfCheck": "The ordinary case proceeds within scope; missing information is requested; the out-of-area decision goes to staff."
+      }
+    },
+    {
+      "id": "UNCHECKED_OUTPUT",
+      "label": "The result has not been inspected",
+      "observation": "Polished text, a model's success claim, or an imagined run is treated as evidence that the task worked.",
+      "lessonIds": [
+        "L01",
+        "L03",
+        "L04"
+      ],
+      "drill": {
+        "id": "D-CHECK",
+        "title": "Predict, inspect, then vary",
+        "estimatedMinutes": 10,
+        "scenario": "Fictional task: draft a reply that preserves supplied details and asks for missing ones without confirming a booking.",
+        "instruction": "Write three expected behaviours, create a normal input and an incomplete input, then run an available AI tool or manually simulate them. Label which method you used. Compare each output with expectations and retry one changed case.",
+        "hint": "Quote the actual output that supports your finding; predictions stay separate from observed results.",
+        "selfCheck": "The record shows what was expected, what actually happened or was simulated, and what the changed case established."
+      }
+    },
+    {
+      "id": "UNVERIFIED_COMPLETION",
+      "label": "A success claim lacks outcome evidence",
+      "observation": "A summary, accepted request or process exit is treated as proof that the required destination result exists.",
+      "lessonIds": [
+        "L04",
+        "L05"
+      ],
+      "drill": {
+        "id": "D-RESULT",
+        "title": "Separate success, failure and uncertainty",
+        "estimatedMinutes": 6,
+        "scenario": "Fictional run R-10 says an internal draft was saved and exits normally. No draft identifier is recorded. The destination lookup times out, so its contents are unknown.",
+        "instruction": "Write the honest current status, the evidence still needed, and one bounded next check. Then change the case: the authoritative lookup finds the expected draft and revision. Update the status.",
+        "hint": "A missing observation is different from an authoritative empty result or an explicit rejected write.",
+        "selfCheck": "The first state stays unresolved; the learner neither accepts the success narrative nor invents proof of failure. The second state cites the observed record and its checked contents."
+      }
+    },
+    {
+      "id": "UNBOUNDED_EXECUTION",
+      "label": "The job has no enforceable stopping point",
+      "observation": "An agent can keep acting, retrying, spending or expanding its permissions without a defined boundary and fallback.",
+      "lessonIds": [
+        "L04",
+        "L05"
+      ],
+      "drill": {
+        "id": "D-LIMITS",
+        "title": "Give one job a finish and an exit",
+        "estimatedMinutes": 8,
+        "scenario": "Fictional proposal: compare equipment availability using catalogue and stock reads, retry until something works, and buy more tool credits if needed.",
+        "instruction": "Name permitted tools, prohibited actions, a maximum action count or time, a retry rule, a spending boundary and an escalation owner. Say which runner or tool control would enforce each limit in a real build.",
+        "hint": "An instruction to be careful does not itself enforce a limit. Read failures and uncertain writes need different recovery decisions.",
+        "selfCheck": "The proposal has a measurable stop, limited retries, no self-authorised purchase or new access, and a human route when the bound is reached. Any unverified control is explicitly marked as a design requirement."
+      }
+    },
+    {
+      "id": "MISPLACED_APPROVAL",
+      "label": "Approval does not control the action",
+      "observation": "A notification arrives after an action, or approval for an older revision is used to justify a changed action.",
+      "lessonIds": [
+        "L05"
+      ],
+      "drill": {
+        "id": "D-APPROVAL",
+        "title": "Find the decision that must wait",
+        "estimatedMinutes": 6,
+        "scenario": "Fictional office rule: staff must approve the exact customer reply before sending. Draft v3 was approved; v4 changes a price. The runner plans to send v4 and then create an approval task.",
+        "instruction": "Identify the missing decision, put the wait in the right place, and write the status shown while waiting. Say what should happen if nobody answers during the agreed review window.",
+        "hint": "The relevant approval belongs to the actual version and action being performed.",
+        "selfCheck": "v4 remains pending before sending. Old approval or a later notification is insufficient. The unresolved case has an owner and fallback rather than silent automatic approval."
+      }
+    },
+    {
+      "id": "UNOWNED_MAINTENANCE",
+      "label": "Nobody owns the work after delivery",
+      "observation": "An offer promises a working system without assigning operation, failure response, ongoing costs or an exit route.",
+      "lessonIds": [
+        "L06"
+      ],
+      "drill": {
+        "id": "D-OWNER",
+        "title": "Name the people behind the service",
+        "estimatedMinutes": 8,
+        "scenario": "Fictional offer: We build the workflow, you own it, and it runs by itself. The client can review drafts but has no one able to repair the integration.",
+        "instruction": "Rewrite the operating paragraph: who reviews outputs, notices failures, restores service, pays usage, approves changes and receives exports on exit? Choose a realistic support window and fallback; leave the fee for a separate scope-based discussion.",
+        "hint": "Account ownership and the ability to operate or maintain the system are separate questions.",
+        "selfCheck": "Responsibilities, boundaries and exit are explicit. The client is not silently assigned technical work they cannot do, and the provider does not promise unlimited support."
+      }
+    }
+  ]
+}

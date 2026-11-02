@@ -1,0 +1,336 @@
+{
+  "schemaVersion": 1,
+  "source": "content/curriculum.md (handoff revision 1.2)",
+  "modules": [
+    {
+      "id": "M00",
+      "title": "Diagnose and establish a working case",
+      "frameworkConnection": "RCCF for an initial task; Buyback Loop for selecting where practice time will go.",
+      "purpose": "distinguish what Martin already does well from specific errors worth practising. No tool knowledge quiz is required.",
+      "additionalPractice": {
+        "minutes": 180,
+        "text": "collect or create a small set of relevant examples; repeat the diagnostic on a changed case; organize the project evidence. Use owned, approved, anonymized, or fictional material."
+      },
+      "missions": [
+        {
+          "id": "M00-01",
+          "title": "Judge a flawed customer reply",
+          "activeMinutes": 35,
+          "mode": "mobile",
+          "lessonId": "L01",
+          "practice": "complete L01 before seeing its example answer, then explain the most consequential error in one sentence.",
+          "evidence": "a claim check, revised reply, and one observation about the review process.",
+          "acceptance": "the review identifies unsupported commitments and preserves the customer's stated requirements. A miss leads to a short evidence-checking drill, not an entire beginner course."
+        },
+        {
+          "id": "M00-02",
+          "title": "Work a familiar task without assistance",
+          "activeMinutes": 45,
+          "mode": "mobile",
+          "practice": "choose a familiar, anonymized task or a supplied fictional case. Produce the result unaided, then use an AI tool for a second attempt. Compare the actual work needed to reach a checked result.",
+          "evidence": "both outputs, a small comparison, and observations about what helped or introduced rework.",
+          "acceptance": "separate output quality from speed. Do not call the first slower attempt a reliable baseline for all future work."
+        },
+        {
+          "id": "M00-03",
+          "title": "Select one project and define its boundary",
+          "activeMinutes": 50,
+          "mode": "mobile",
+          "practice": "select a local-service workflow that can be studied through accessible examples. Write the business goal, the user, the start and end of the task, and what is excluded.",
+          "evidence": "a one-page project card marked fictional, owned-system, or potential client case.",
+          "acceptance": "one observable task can be investigated without promising an entire company transformation. Assumptions and access needs are visible."
+        },
+        {
+          "id": "M00-04",
+          "title": "Create a personal practice plan",
+          "activeMinutes": 50,
+          "mode": "mobile",
+          "practice": "use the initial attempts to select two narrow skills for deliberate practice. Place short sessions and longer application blocks into a realistic week. Decide what the freed time should support, using the Fill part of the Buyback Loop.",
+          "evidence": "two evidence-linked practice targets, an available-time plan, and a next exercise for each target.",
+          "acceptance": "targets describe actions, such as “mark unknown facts before drafting,” rather than identities such as “be better at AI.”"
+        }
+      ]
+    },
+    {
+      "id": "M01",
+      "title": "Audit and discover the problem",
+      "frameworkConnection": "Buyback Audit, Camcorder Method, and Deployment Step 1.",
+      "purpose": "discover a useful problem before committing to a tool or preferred solution.",
+      "additionalPractice": {
+        "minutes": 160,
+        "text": "perform a short discovery conversation or simulation; inspect further examples; complete the initial baseline; revise the problem statement. The practice should not assume permission for broad system access."
+      },
+      "missions": [
+        {
+          "id": "M01-01",
+          "title": "Separate the complaint from the problem",
+          "activeMinutes": 40,
+          "mode": "mobile",
+          "lessonId": "L02",
+          "practice": "complete L02 and identify what remains unknown after the fictional discovery conversation.",
+          "evidence": "a provisional problem statement, neutral questions, and a small evidence request.",
+          "acceptance": "the proposal is anchored in observed work and can be revised if the next examples contradict it."
+        },
+        {
+          "id": "M01-02",
+          "title": "Observe one complete task",
+          "activeMinutes": 40,
+          "mode": "hybrid",
+          "practice": "use the Camcorder Method on an owned task, permissioned demonstration, or supplied simulation. Compare the owner's goal with the operator's account and a recent example using planned brief CP01. Record or narrate decisions and interruptions; a written walkthrough is acceptable when recording is unsuitable.",
+          "evidence": "notes identifying inputs, decisions, outputs, an exception, any disagreement between accounts, and the next neutral question.",
+          "acceptance": "distinguish observed work, reported practice and assumptions. Neither the manager nor operator is presumed wrong. The record contains no unnecessary private material; interview scope follows the question being resolved."
+        },
+        {
+          "id": "M01-03",
+          "title": "Map the path and the waiting",
+          "activeMinutes": 40,
+          "mode": "mobile",
+          "practice": "turn the observed task into a small process map. Mark human work, waiting, system handoffs, decisions, and rework separately. Identify both time-consuming steps and quality risks, and retain unresolved differences between the accounts in CP01.",
+          "evidence": "a map with a clear trigger and completion condition.",
+          "acceptance": "a second reader can follow both the normal case and the observed exception without having to guess a handoff."
+        },
+        {
+          "id": "M01-04",
+          "title": "Establish a usable baseline",
+          "activeMinutes": 40,
+          "mode": "hybrid",
+          "practice": "design and begin a small consecutive-case log. Separate active handling time from elapsed response time and track corrections or missing inputs.",
+          "evidence": "a recording sheet plus sample observations labelled observed, estimated, or simulated.",
+          "acceptance": "definitions are clear enough to use again after the change. A small sample is treated as preliminary evidence, not a population-wide guarantee."
+        },
+        {
+          "id": "M01-05",
+          "title": "Choose one opportunity",
+          "activeMinutes": 40,
+          "mode": "mobile",
+          "practice": "compare three plausible improvements using frequency, value, feasibility, total effort, consequences of errors and available evidence. Use CP02's impact–effort shortlist with confidence, dependencies and adoption concerns visible. Include doing nothing or simplifying the process when relevant.",
+          "evidence": "a provisional ranking stating the chosen problem, alternatives, uncertainty, pilot success criteria and who should validate the priorities.",
+          "acceptance": "the priority follows the case evidence rather than a fixed department order or enthusiasm for a tool. A familiar automation category is not automatically a quick win."
+        }
+      ]
+    },
+    {
+      "id": "M02",
+      "title": "Design context and the workflow",
+      "frameworkConnection": "Company Master Prompt, RCCF, Transfer, and Deployment Step 2.",
+      "purpose": "translate a business problem into clear inputs, rules, outputs, responsibilities, and a small proposed workflow.",
+      "additionalPractice": {
+        "minutes": 150,
+        "text": "test context on new examples in the learner's chosen AI tool; inspect how the existing business system represents the needed data; revise the pilot brief. Learn a missing technical concept only when this work exposes the need."
+      },
+      "missions": [
+        {
+          "id": "M02-01",
+          "title": "Define a result that can be checked",
+          "activeMinutes": 35,
+          "mode": "mobile",
+          "practice": "specify the desired output and the checks a competent user would apply. Identify the minimum information required to produce it.",
+          "evidence": "an input-and-output contract with examples of acceptable and unacceptable results.",
+          "acceptance": "criteria describe observable behavior. “High quality,” “smart,” and “like an expert” alone are insufficient."
+        },
+        {
+          "id": "M02-02",
+          "title": "Improve context and test a variant",
+          "activeMinutes": 45,
+          "mode": "mobile",
+          "lessonId": "L03",
+          "practice": "complete L03 using RCCF. Keep business facts and rules distinct from style preferences and incoming customer text.",
+          "evidence": "the revised prompt, test predictions, and a transfer-case review.",
+          "acceptance": "the prompt handles missing information and an unfamiliar case without inventing permission, policy, or operational facts."
+        },
+        {
+          "id": "M02-03",
+          "title": "Choose AI, rules, or people for each step",
+          "activeMinutes": 45,
+          "mode": "mobile",
+          "lessonId": "L04",
+          "practice": "complete L04, then annotate the selected project's process map. Choose rules, a model step in a fixed workflow, a bounded agent, or human judgment for each part. Distinguish current input, approved context, remembered advice, and maintained business records.",
+          "evidence": "a step-by-step allocation, the source of current business rules, and explicit tool, stop, retry and spending boundaries where an agent is proposed.",
+          "acceptance": "each AI step has a defined input, output and verification method. A simpler adequate solution is valid. Instructions in a prompt are not represented as enforced permissions or model retraining."
+        },
+        {
+          "id": "M02-04",
+          "title": "Specify exceptions and review",
+          "activeMinutes": 40,
+          "mode": "mobile",
+          "practice": "identify incomplete requests, conflicting instructions, unknown cases, and tool failures. Define what stops, what is retained, who reviews it, and what can continue. Place required approval before the governed action; keep routine notifications separate.",
+          "evidence": "an exception table and a normal-case review rule.",
+          "acceptance": "the design does not rely on the AI always knowing when it is wrong. Review decisions can be checked against explicit conditions."
+        },
+        {
+          "id": "M02-05",
+          "title": "Scope the smallest useful pilot",
+          "activeMinutes": 45,
+          "mode": "mobile",
+          "practice": "write a pilot brief covering the problem, user, scope, examples, success criteria, access needed, and what the prototype will not yet establish. Use CP02 to check the provisional ranking with the relevant people or a supplied fictional follow-up. Revise it when hidden dependencies or adoption concerns change the choice.",
+          "evidence": "a pilot brief, a short build sequence, and the reason for any change after validation.",
+          "acceptance": "the prototype can demonstrate value with a narrow task before taking on broad external actions or live customer commitments. Client agreement and technical feasibility remain separate evidence questions."
+        }
+      ]
+    },
+    {
+      "id": "M03",
+      "title": "Build a bounded prototype",
+      "frameworkConnection": "Transfer and Deployment Step 2.",
+      "purpose": "turn the design into an inspectable working path, with a clear distinction between manual simulation and connected execution.",
+      "additionalPractice": {
+        "minutes": 180,
+        "text": "finish the bounded build, repeat runs on new inputs, troubleshoot a concrete failure, and record the working version. If small-screen constraints prevent a connected build, complete and label a manual simulation and schedule the external step separately."
+      },
+      "missions": [
+        {
+          "id": "M03-01",
+          "title": "Build the manual assisted version",
+          "activeMinutes": 35,
+          "mode": "hybrid",
+          "practice": "run the chosen task manually with AI assistance and explicit review. Check whether the output is useful before connecting systems.",
+          "evidence": "a worked example, corrected output, and a note identifying the step worth automating next.",
+          "acceptance": "the user-facing result meets the pilot contract and its production still involves the stated review."
+        },
+        {
+          "id": "M03-02",
+          "title": "Trace one record between systems",
+          "activeMinutes": 35,
+          "mode": "hybrid",
+          "practice": "map a single record's fields from input to output. If the project needs an API, webhook, or file import, learn that mechanism through this exact example. For each integration, identify what it reads or changes, the authoritative record, and the account and recovery owner; never record secret credentials in the learning app.",
+          "evidence": "a small data and responsibility map with required fields, missing-value behavior, and a stable record reference.",
+          "acceptance": "the learner can explain where each output value came from and what happens when a required input is absent."
+        },
+        {
+          "id": "M03-03",
+          "title": "Build the first narrow path",
+          "activeMinutes": 40,
+          "mode": "external",
+          "practice": "implement the smallest path in an available automation or code environment. Use synthetic or permitted test inputs. This is a guided first build block; unfinished work continues in project practice time.",
+          "evidence": "screenshots, a short recording, or inspectable configuration/code plus one traceable run.",
+          "acceptance": "the actual implementation matches the stated simulation or connection level. A screenshot of a planned workflow is not labelled as a successful run."
+        },
+        {
+          "id": "M03-04",
+          "title": "Make failure visible",
+          "activeMinutes": 35,
+          "mode": "hybrid",
+          "lessonId": "L05",
+          "practice": "complete L05 using the fictional execution record. In project practice, apply the same reasoning to an actual safe failure test in an owned or authorised environment. Check detection, destination evidence, approval order and duplicate handling before retrying.",
+          "evidence": "a reasoned diagnosis and recovery plan, plus any separately observed failure/recovery evidence. A phone-based interpretation stays labelled fictional; it does not establish a working integration.",
+          "acceptance": "a worker's success message or clean exit does not substitute for the required result. A failure detector can notice a stopped worker, and unresolved cases have a bounded route to a responsible person."
+        },
+        {
+          "id": "M03-05",
+          "title": "Explain the build in ordinary language",
+          "activeMinutes": 35,
+          "mode": "mobile",
+          "practice": "describe the workflow to a prospective user. Identify what it reads, proposes, changes, and leaves for review.",
+          "evidence": "a one-minute explanation and an updated map.",
+          "acceptance": "the explanation accurately reflects the implemented behavior, including limitations and external dependencies."
+        }
+      ]
+    },
+    {
+      "id": "M04",
+      "title": "Test and measure the result",
+      "frameworkConnection": "Deployment Step 3.",
+      "purpose": "gather enough evidence to make a proportionate next decision, while remaining honest about untested risks.",
+      "additionalPractice": {
+        "minutes": 160,
+        "text": "gather additional relevant cases, resolve a consequential uncertainty, conduct a user walkthrough, or check value assumptions. Spend the time where the evidence is weakest; avoid expanding tests only to increase their count."
+      },
+      "missions": [
+        {
+          "id": "M04-01",
+          "title": "Design representative tests",
+          "activeMinutes": 40,
+          "mode": "mobile",
+          "practice": "create a compact test set from the pilot's actual decisions. Include ordinary, incomplete, conflicting, duplicate, and failure cases where relevant.",
+          "evidence": "test inputs with expected outcomes defined before execution.",
+          "acceptance": "tests exercise distinct failure risks rather than many cosmetic rewrites of the same easy input."
+        },
+        {
+          "id": "M04-02",
+          "title": "Run the tests and inspect the evidence",
+          "activeMinutes": 45,
+          "mode": "external",
+          "practice": "run the bounded workflow and compare results with the expected outcomes. Record output, edits, handling time, and any failed action. Distinguish verified outcomes, legitimate skips, failures and unresolved runs; reconcile counts with the actual run inventory.",
+          "evidence": "a test log linking each result to an input and workflow version.",
+          "acceptance": "failures remain visible. A model's own claim of success does not count as verification that an external action happened."
+        },
+        {
+          "id": "M04-03",
+          "title": "Repair one cause and retest a new case",
+          "activeMinutes": 40,
+          "mode": "hybrid",
+          "practice": "choose one consequential failure, identify its likely cause, and make a focused change. Retest the failure and a fresh variant.",
+          "evidence": "before/after observations, the change, and a transfer result.",
+          "acceptance": "the change addresses the cause without quietly weakening the acceptance criteria."
+        },
+        {
+          "id": "M04-04",
+          "title": "Estimate value without exaggerating it",
+          "activeMinutes": 40,
+          "mode": "mobile",
+          "practice": "compare checked end-to-end effort, service quality, and costs per accepted outcome using CP03. Include setup, model and tool usage, retries, review, corrections, recovery, training and maintenance. Separate capacity released, cash costs avoided, and additional contribution from revenue. Keep fictional assumptions and dated vendor quotes separate from observed bills.",
+          "evidence": "a small value assessment with a conservative and central scenario, labelled assumptions, and an explanation of how any benefit would be realized. If calculating simple ROI, state financial benefits and all defined costs for the same period, then divide net benefit by those costs.",
+          "acceptance": "no double-counting of freed time and the work it enables. Estimates and observed results are labelled distinctly. Unused capacity is not automatically cash or sales; zero-denominator ROI is undefined. An unknown financial benefit remains unknown rather than becoming a persuasive invented number."
+        },
+        {
+          "id": "M04-05",
+          "title": "Decide whether to continue",
+          "activeMinutes": 35,
+          "mode": "mobile",
+          "practice": "choose continue, narrow, revise, pause, or stop. Explain what the evidence supports and the next uncertainty worth resolving.",
+          "evidence": "a pilot decision note with one concrete next step.",
+          "acceptance": "continuation is earned by the result, not by the time already spent building."
+        }
+      ]
+    },
+    {
+      "id": "M05",
+      "title": "Explain, hand over, and repeat",
+      "frameworkConnection": "Deployment Step 4, SOP creation, and the next Buyback Loop.",
+      "purpose": "convert a useful result into a clear offer and maintainable practice. This module does not imply that the learner has sold or deployed the work.",
+      "additionalPractice": {
+        "minutes": 200,
+        "text": "refine a demonstration and handover with another person's feedback; practise a discovery or pilot conversation; improve the reusable project materials. A real outreach conversation is optional and should be deliberate, not an automatic app action."
+      },
+      "missions": [
+        {
+          "id": "M05-01",
+          "title": "Present the result honestly",
+          "activeMinutes": 40,
+          "mode": "mobile",
+          "practice": "use CP04 to create one concise client explanation as a one-page brief or short demonstration. Cover the problem and scope, evidence, options, recommended pilot, benefits and costs, and the next decision. Include a checked example when available.",
+          "evidence": "a decision brief or demo script with an evidence-backed result summary; slides are optional.",
+          "acceptance": "fictional numbers remain fictional, pilot observations remain pilot observations, and projections remain estimates. The client can identify the recommendation, its reason, their contribution and the next decision."
+        },
+        {
+          "id": "M05-02",
+          "title": "Draft a bounded pilot offer",
+          "activeMinutes": 40,
+          "mode": "mobile",
+          "lessonId": "L06",
+          "practice": "complete L06, then draft the selected project's offer. Compare a client-operated tool, commissioned build and managed service where relevant. State the tested outcome, scope, client input, delivery evidence, operating and maintenance owners, ongoing costs, and exit arrangements. Use CP05 when a stand-alone assessment or delivery partner fits the case; neither is compulsory.",
+          "evidence": "a draft offer with a supported value discussion and clear responsibilities that can be reviewed before it is sent.",
+          "acceptance": "the arrangement has a credible operator and support plan. The offer avoids guaranteed results, undefined unlimited support, and promises that exceed demonstrated capability. A build fee, support agreement or managed service can each be valid when justified. Sending is a separate real-world action."
+        },
+        {
+          "id": "M05-03",
+          "title": "Prepare the handover and operating routine",
+          "activeMinutes": 40,
+          "mode": "hybrid",
+          "practice": "use the Camcorder Method to explain the working process. Document ordinary use, review, failures, ownership, changes, and how to stop the workflow. Where delivery uses a partner, apply CP05 to identify the feasibility reviewer, acceptance evidence, client contact and ongoing support owner.",
+          "evidence": "a concise SOP, owner table, first-review checklist, and handover inventory covering accounts, delivered configuration/code, exportable records, ongoing costs and removal of unnecessary access.",
+          "acceptance": "another person can use the material to run the normal case and respond to the tested failure without relying on the builder's memory."
+        },
+        {
+          "id": "M05-04",
+          "title": "Transfer the method to a second business",
+          "activeMinutes": 40,
+          "mode": "mobile",
+          "practice": "apply the discovery and scoping method to a different local-service example. Decide what can be reused and what requires new evidence. Choose how to use any time freed by the first improvement.",
+          "evidence": "a second problem hypothesis, reuse notes, and a next-cycle plan.",
+          "acceptance": "the learner identifies reusable components and reconfirms the second business's rules, data, permissions, review responsibilities and priorities with fresh examples. A copied configuration is not evidence of client fit."
+        }
+      ]
+    }
+  ]
+}

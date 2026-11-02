@@ -1,0 +1,12 @@
+{
+  "name": "ai-business-practice",
+  "version": "0.1.0",
+  "private": true,
+  "description": "Personal learning app: static files, no build step and no runtime dependencies.",
+  "type": "module",
+  "scripts": {
+    "start": "python3 -m http.server 8080",
+    "test": "node --test tests/data.test.mjs",
+    "test:e2e": "node tests/e2e.mjs"
+  }
+}

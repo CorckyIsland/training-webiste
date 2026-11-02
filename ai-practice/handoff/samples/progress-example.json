@@ -1,0 +1,97 @@
+{
+  "schemaVersion": 1,
+  "sampleOnly": true,
+  "description": "Entirely synthetic sample. Feedback text illustrates provenance; no AI review or real learner activity occurred.",
+  "exportedAt": "2026-11-02T09:30:00Z",
+  "profile": {
+    "profileId": "sample-profile",
+    "preferredLanguage": "en",
+    "weeklyHours": [6, 8]
+  },
+  "drafts": [
+    {
+      "id": "sample-draft-L02",
+      "lessonId": "L02",
+      "contentVersion": 1,
+      "updatedAt": "2026-11-02T09:28:00Z",
+      "values": {"problem_hypothesis": "The office may spend repeated effort chasing incomplete requests; I need examples to check the cause."}
+    }
+  ],
+  "attempts": [
+    {
+      "id": "sample-attempt-L01-r1",
+      "lessonId": "L01",
+      "missionId": "M00-01",
+      "contentVersion": 1,
+      "revisionId": "sample-revision-1",
+      "supersedesRevisionId": null,
+      "state": "reviewed",
+      "evidenceKind": "fictional",
+      "submittedAt": "2026-11-02T09:10:00Z",
+      "submission": {
+        "unsafe_claims": ["booking_confirmed", "date_june_6", "wheelchair_folded", "price_confirmed", "arrival_guaranteed"],
+        "revised_reply": "Hi Lea, we will check availability and the fare. Please send the exact date, contact number and ferry details. The booking is not yet confirmed.",
+        "review_explanation": "The unverified booking may create a commitment that the office cannot fulfil."
+      },
+      "rubricChecks": [
+        {"criterionId": "L01-R1", "result": "met", "evidenceText": "My reply explicitly leaves the booking unconfirmed.", "revisionId": "sample-revision-1"},
+        {"criterionId": "L01-R2", "result": "met", "evidenceText": "I removed the invented date, fare and arrival guarantee.", "revisionId": "sample-revision-1"},
+        {"criterionId": "L01-R3", "result": "needs_work", "evidenceText": "I did not preserve the wheelchair and luggage requirements in the reply.", "revisionId": "sample-revision-1"},
+        {"criterionId": "L01-R4", "result": "met", "evidenceText": "I requested the date, contact number and ferry details.", "revisionId": "sample-revision-1"},
+        {"criterionId": "L01-R5", "result": "needs_work", "evidenceText": "The next step needs an explicit suitability check.", "revisionId": "sample-revision-1"},
+        {"criterionId": "L01-R6", "result": "met", "evidenceText": "My explanation names the operational commitment.", "revisionId": "sample-revision-1"}
+      ],
+      "feedback": [
+        {
+          "id": "sample-feedback-choice-1",
+          "revisionId": "sample-revision-1",
+          "provenance": "authored_choice_key",
+          "text": "You did not select vehicle_suitable. Vehicle suitability has not been checked. This check covers the selections only.",
+          "learnerResponse": "I will add a suitability check and preserve the customer's stated requirements."
+        }
+      ],
+      "events": [
+        {"id": "sample-event-1", "type": "opened", "createdAt": "2026-11-02T09:00:00Z", "revisionId": "sample-revision-1", "evidence": {}},
+        {"id": "sample-event-2", "type": "submitted", "createdAt": "2026-11-02T09:10:00Z", "revisionId": "sample-revision-1", "evidence": {"submissionId": "sample-attempt-L01-r1"}},
+        {"id": "sample-event-3", "type": "rubric_recorded", "createdAt": "2026-11-02T09:12:00Z", "revisionId": "sample-revision-1", "evidence": {"criterionIds": ["L01-R1", "L01-R2", "L01-R3", "L01-R4", "L01-R5", "L01-R6"]}},
+        {"id": "sample-event-4", "type": "feedback_responded", "createdAt": "2026-11-02T09:14:00Z", "revisionId": "sample-revision-1", "evidence": {"feedbackId": "sample-feedback-choice-1"}}
+      ]
+    },
+    {
+      "id": "sample-attempt-L01-r2",
+      "lessonId": "L01",
+      "missionId": "M00-01",
+      "contentVersion": 1,
+      "revisionId": "sample-revision-2",
+      "supersedesRevisionId": "sample-revision-1",
+      "state": "attempted",
+      "evidenceKind": "fictional",
+      "submittedAt": "2026-11-02T09:20:00Z",
+      "submission": {
+        "unsafe_claims": ["booking_confirmed", "date_june_6", "vehicle_suitable", "wheelchair_folded", "price_confirmed", "arrival_guaranteed"],
+        "revised_reply": "Hi Lea, we will check availability and a suitable vehicle for seven passengers, including one remaining seated in a wheelchair, plus your luggage. Please send the exact date, contact number and ferry booking details or check-in requirement. We can then confirm whether we can accommodate the journey, the pickup time and price. The booking is not yet confirmed.",
+        "review_explanation": "The wheelchair and luggage requirements must remain intact while the office checks suitability."
+      },
+      "rubricChecks": [],
+      "feedback": [
+        {
+          "id": "sample-feedback-external-2",
+          "revisionId": "sample-revision-2",
+          "provenance": "external_ai_unverified",
+          "text": "Synthetic example of a pasted review: the revised text appears to preserve the wheelchair requirement. Check every criterion against the case before accepting this assessment.",
+          "learnerResponse": null
+        }
+      ],
+      "events": [
+        {"id": "sample-event-5", "type": "submitted", "createdAt": "2026-11-02T09:20:00Z", "revisionId": "sample-revision-2", "evidence": {"submissionId": "sample-attempt-L01-r2", "supersedesRevisionId": "sample-revision-1"}},
+        {"id": "sample-event-6", "type": "feedback_imported", "createdAt": "2026-11-02T09:21:00Z", "revisionId": "sample-revision-2", "evidence": {"feedbackId": "sample-feedback-external-2", "sampleOnly": true}}
+      ]
+    }
+  ],
+  "notes": [
+    {"id": "sample-note-1", "text": "Sample learning note: check requirements as well as invented prices. The second revision still needs its own rubric check; the older review does not certify it.", "updatedAt": "2026-11-02T09:22:00Z"}
+  ],
+  "measurements": [
+    {"id": "sample-measure-1", "label": "Illustrative checked handling effort", "kind": "fictional", "unit": "minutes_per_case", "value": 12, "period": "One fictional example; not a baseline or claimed saving"}
+  ]
+}

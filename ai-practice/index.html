@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<meta http-equiv="Content-Security-Policy" content="default-src 'self'; script-src 'self'; style-src 'self'; img-src 'self' data:; font-src 'self'; connect-src 'self'; object-src 'none'; base-uri 'none'; form-action 'none'">
+<meta name="referrer" content="no-referrer">
+<title>AI Business Practice</title>
+<meta name="description" content="Personal practice app: turn AI tool familiarity into checked, explainable business work.">
+<meta name="color-scheme" content="light dark">
+<meta name="theme-color" content="#f6f3ec" media="(prefers-color-scheme: light)">
+<meta name="theme-color" content="#14181a" media="(prefers-color-scheme: dark)">
+<link rel="icon" type="image/svg+xml" href="icons/icon.svg">
+<script src="js/theme-init.js"></script>
+<link rel="stylesheet" href="css/app.css">
+<script type="module" src="js/main.js"></script>
+</head>
+<body>
+<a class="skip-link" href="#main">Skip to content</a>
+<header class="topbar" id="topbar">
+  <div class="wrap topbar-inner">
+    <a class="brand" href="#/today">
+      <img src="icons/icon.svg" alt="" width="28" height="28">
+      <span>AI Business Practice</span>
+    </a>
+    <a class="save-indicator" id="save-indicator" href="#/settings" role="status" aria-live="polite">…</a>
+  </div>
+  <nav class="wrap tabs" aria-label="Main">
+    <a href="#/today" data-tab="today">Today</a>
+    <a href="#/course" data-tab="course">Course</a>
+    <a href="#/work" data-tab="work">My Work</a>
+    <a href="#/settings" data-tab="settings" class="tab-icon" aria-label="Backup, restore and settings">
+      <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M12 3v11m0 0l-4-4m4 4l4-4M5 17v3h14v-3" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg>
+      <span class="tab-icon-label">Backup</span>
+    </a>
+  </nav>
+</header>
+<div class="wrap" id="banners" aria-live="polite"></div>
+<main id="main" class="wrap" tabindex="-1">
+  <noscript><p>This app needs JavaScript to run.</p></noscript>
+  <p class="muted" id="boot-msg">Loading…</p>
+</main>
+<footer class="wrap footer">
+  <p class="muted small">Work is saved only in this browser on this device. Export a backup from <a href="#/settings">Backup &amp; restore</a> to move or keep it.</p>
+</footer>
+</body>
+</html>

@@ -1,0 +1,383 @@
+{
+  "schemaVersion": 1,
+  "lessons": [
+    {
+      "id": "L04",
+      "missionId": "M02-03",
+      "moduleId": "M02",
+      "contentVersion": 1,
+      "title": "Which steps need an agent?",
+      "estimatedMinutes": 30,
+      "objective": "Choose rules, a fixed AI step, or a bounded agent for an enquiry task; separate current evidence from remembered notes and define a small, checkable scope.",
+      "scenario": {
+        "label": "Original fictional practice case; no connected services or live runs",
+        "facts": [
+          "Fjord Tool Hire is a fictional local equipment-rental business. The pilot prepares internal enquiry records and reply drafts for staff. It cannot send messages, reserve equipment, promise delivery, or quote prices.",
+          "Current service policy v3, approved 1 June 2030: Bergvik and Fjordvik are normal delivery areas. Other towns require staff assessment. Required intake is name, contact detail, requested item, exact date, and town. Missing or ambiguous information stays unresolved.",
+          "The dated product catalogue and current stock table are the maintained sources for item details and a stock snapshot. A stock snapshot is information, not a reservation. One enquiry record is stored per source message ID.",
+          "An old undated memory note says: Elveby is always a normal delivery area. That note conflicts with the current approved policy and must not override it.",
+          "Available read tools for a later test are find_item(search_text), which returns catalogue matches and compatibility notes, and read_stock(item_id, date), which returns a dated stock snapshot. Neither tool can reserve, send, or approve anything.",
+          "The manual prototype has no actual tool connections. Describe or simulate calls, and label them as such. This exercise incurs no paid API usage.",
+          "Rules means the steps and conditions are defined in advance. A fixed AI step interprets language inside a defined sequence. A bounded agent chooses its next permitted action from what it discovers. None is a compulsory upgrade from another.",
+          "Input is the current enquiry. Context supplies relevant policies and task instructions. Memory carries selected notes between runs; it does not retrain the model or replace the business record."
+        ],
+        "inputText": "Variant A — A structured form supplies a valid catalogue item ID, exact date, name, contact, and Bergvik as the town. The task is to copy the fields into the internal enquiry record and mark it ready for staff review.\n\nVariant B — Message B-104: “I am Nora in Elveby. I need a pressure washer for 12 June 2030. Please reply at nora@example.invalid. Can you confirm delivery?” The task is to extract the details, check completeness and service-area rules, and draft a reply for staff.\n\nVariant C — A possible later service asks for an internal comparison of suitable alternatives when a requested item is unavailable. Some requests name an exact item; others describe a task, and the next catalogue or stock check depends on what has already been found. Staff still decide suitability and any customer commitment.\n\nAll names, dates, addresses, and records here are fictional. The .invalid address must not be contacted.",
+        "flawedOutput": "Proposed build: use one always-running agent for all three variants. Give it every company tool, let its memory decide delivery rules, and keep retrying until it can report success.",
+        "flawedOutputLabel": "Proposed design to assess"
+      },
+      "task": {
+        "instruction": "Choose the simplest justified mechanism for A, B, and C. Design Variant B in at most six steps. Explain the roles of the input, current policy, memory note, and enquiry record. Then define permissions and limits for a possible C pilot, without building or running it. A justified fixed workflow or human route for C is valid; an agent is not required.",
+        "fields": [
+          {
+            "id": "mechanism_choices",
+            "label": "A, B, and C: rules, fixed AI step, bounded agent, or human review — and why",
+            "kind": "long_text"
+          },
+          {
+            "id": "workflow_steps",
+            "label": "Variant B: up to six steps, including the final evidence of completion",
+            "kind": "long_text"
+          },
+          {
+            "id": "context_and_record",
+            "label": "Which information is input, approved context, remembered advice, and the business record?",
+            "kind": "long_text"
+          },
+          {
+            "id": "run_boundaries",
+            "label": "Possible C pilot: allowed tools, prohibited actions, stop conditions, retry rule, and spending limit",
+            "kind": "long_text"
+          }
+        ]
+      },
+      "hints": [
+        "Ask who needs to decide what happens next. Copying validated form fields does not require language interpretation. Reading a free-text enquiry does not mean the model must control the whole workflow.",
+        "For B, compare Elveby with the current approved policy. A remembered shortcut cannot grant a new delivery promise. What should the internal record say?",
+        "For C, identify the uncertainty the agent would resolve, then limit its search. Name what happens when a tool fails, alternatives remain ambiguous, or the run reaches its limit."
+      ],
+      "rubric": [
+        {
+          "id": "L04-R1",
+          "label": "Mechanism fits the work",
+          "passEvidence": "Uses rules for A and a fixed sequence with a language step for B, or justifies an equally adequate simpler approach. Treats C as a conditional choice based on the need for runtime decisions, not a mandatory agent upgrade.",
+          "errorTag": "SOLUTION_FIRST"
+        },
+        {
+          "id": "L04-R2",
+          "label": "Current evidence outranks an old note",
+          "passEvidence": "Identifies the enquiry as input, policy v3 as approved context, the old note as potentially stale memory, and the enquiry/stock records as maintained business data. Keeps Elveby subject to staff assessment.",
+          "errorTag": "UNSUPPORTED_FACT",
+          "critical": true
+        },
+        {
+          "id": "L04-R3",
+          "label": "Authority remains bounded",
+          "passEvidence": "Limits any C pilot to the needed catalogue and stock reads and an internal comparison. Does not grant sending, booking, pricing, or delivery-confirmation authority.",
+          "errorTag": "UNSUPPORTED_COMMITMENT",
+          "critical": true
+        },
+        {
+          "id": "L04-R4",
+          "label": "Completion can be inspected",
+          "passEvidence": "B ends with a saved enquiry record and reviewable draft whose fields and review flag can be checked. A stock result is not treated as a reservation or evidence of promised delivery.",
+          "errorTag": "UNVERIFIED_COMPLETION",
+          "critical": true
+        },
+        {
+          "id": "L04-R5",
+          "label": "Limits and failure routes are concrete",
+          "passEvidence": "Names an action or time limit, a bounded retry rule, an explicit spending boundary for any real pilot, and a stop/escalation route. Does not expand permissions or retry indefinitely to finish.",
+          "errorTag": "UNBOUNDED_EXECUTION",
+          "critical": true
+        },
+        {
+          "id": "L04-R6",
+          "label": "The decision can change with evidence",
+          "passEvidence": "Explains what simpler known branches or a failed test would change the C choice, and distinguishes the proposed or simulated design from a working integration.",
+          "errorTag": "UNCHECKED_OUTPUT"
+        }
+      ],
+      "modelAnswer": "### Mechanism choices\nA: use rules to validate and copy the supplied form fields. Add no model for this task.\nB: use a fixed workflow with one language step to extract the enquiry and prepare a draft. The defined rules, not the model, decide whether the town needs staff assessment.\nC: a bounded agent may help if each discovery changes the next useful lookup. First try writing the branches. If a short list of catalogue and stock checks covers the job, keep a fixed workflow. Sending ambiguous cases to staff is also a valid pilot choice.\n\n### Variant B in six steps\n1. Receive message B-104 and retain its source ID; check whether an enquiry record already exists for it.\n2. Give the language step the message, current policy v3, required fields, and draft-only task.\n3. Extract Nora, the supplied contact, pressure washer, 12 June 2030, and Elveby. Do not turn the customer's delivery question into an approved arrangement.\n4. Validate the fields. The town rule marks this enquiry needs_staff_assessment. Retire or flag the conflicting old memory note.\n5. Prepare a short draft: “Thank you, Nora. We have noted your request for a pressure washer on 12 June. Our team will assess delivery to Elveby and confirm what we can offer.” Save it internally with the extracted fields and review flag.\n6. Read the saved record back by source ID and check those fields. Report the record identifier and that it awaits staff assessment. No message has been sent and no equipment reserved.\n\n### Information roles\nThe enquiry is the current input. Policy v3 and the task rules provide approved context. The old note is memory to correct, not current delivery authority. The enquiry record stores task state; the catalogue and stock table hold their own maintained facts. Reading a correction next time can improve behaviour through context; it does not change the model's trained weights.\n\n### Example bounds for a later C pilot\nAllow only the two read tools and preparation of an internal comparison. For this fictional design, limit a run to six read calls or 90 seconds, whichever comes first; allow at most one retry for a temporary read failure within those limits. Missing facts, an authentication failure, unresolved compatibility, or a limit reached sends the case to staff. The agent cannot broaden its access.\n\nFor a real paid pilot, agree and verify a spending limit before enabling it; an illustrative budget might be US$0.25 for estimated model use per run, with a separate limit for paid tools and headroom for billing overshoot. This is an exercise assumption, not a vendor price or guaranteed hard cap. If the controls cannot be verified, keep the exercise manual. The present lesson spends nothing.\n\nThis is an authored design, not a record of a tool run.",
+      "reflection": "Where did interpretation help, and where would giving the model more freedom add little? Which fact would you need to re-check before using the same design next month?",
+      "nextDrill": {
+        "title": "Make the agent unnecessary",
+        "instruction": "Changed case: staff restrict C to three approved alternative item IDs, one fixed suitability rule, and an exact date. All three stock checks can run in a known order. Redesign C using the simplest adequate approach and explain what changed. Keep the same permission and completion checks. Submit and self-check this new design separately; opening the example does not establish applied."
+      },
+      "sources": [
+        {
+          "id": "D1",
+          "label": "Dan Martell supplied playbook; Deployment Step 2 and explicit workflow design"
+        },
+        {
+          "id": "JJ10",
+          "label": "Jon Jones, What Is AI Automation? The three-tier explanation; later operator guidance"
+        },
+        {
+          "id": "JJ1",
+          "label": "Jon Jones autonomous agents guide; tools, context, and one recurring task"
+        },
+        {
+          "id": "JJ3",
+          "label": "Jon Jones agentic AI guide; limited tools and documented workflows"
+        },
+        {
+          "id": "T2",
+          "label": "Anthropic, Building effective agents; workflows, agents, and simple architectures"
+        },
+        {
+          "id": "T3",
+          "label": "Claude Code memory documentation; persistent notes are supplied as context"
+        },
+        {
+          "id": "original_training_material",
+          "label": "Original fictional case, limits, example answer, and rubric; no observed model run"
+        }
+      ]
+    },
+    {
+      "id": "L05",
+      "missionId": "M03-04",
+      "moduleId": "M03",
+      "contentVersion": 1,
+      "title": "The run says success. Where is the result?",
+      "estimatedMinutes": 25,
+      "objective": "Diagnose a misleading success report, verify the destination, place approval before a consequential action, and plan a bounded recovery that avoids duplicates.",
+      "scenario": {
+        "label": "Original fictional execution trace; no live systems, messages, or API calls",
+        "facts": [
+          "Harbour Garden Care is fictional. The intended workflow prepares one internal reply draft for enquiry E-417. A staff member must approve the exact draft revision before any customer send. A notification after an action is an FYI, not prior approval.",
+          "The incoming enquiry record already contains contact_email = lea@example.invalid. A mapping step accidentally omitted that field from the create-draft request. The example address is fictional and must not be contacted.",
+          "This fictional service sometimes returns HTTP 200 with an application error in its response body. Inspect the body to establish whether the operation was accepted. The supplied body explicitly rejects this create operation; a rejected request is not queued for later creation.",
+          "find_draft(source_enquiry_id) is the authoritative lookup for drafts in this exercise. create_draft supports an operation_key: repeating the same operation key returns the existing draft if one was already created, rather than creating a second draft. Do not assume every real API has this feature.",
+          "An explicit validation error needs correction before another attempt. A temporary read failure may justify a bounded retry. After an uncertain write outcome, check for an existing result and reuse the operation key before considering a repeat.",
+          "The current runner relies on the worker to send a failure notification at the end of its own instructions. It has no independent check for a crashed or timed-out worker, missing final record, or missing scheduled run.",
+          "The following trace, lookup, and flawed workflow are authored examples. They are not real execution evidence or instructions to contact a service."
+        ],
+        "inputText": "Supplied input: enquiry E-417; contact_email lea@example.invalid; request “Please quote for hedge trimming.”\n\n09:00:00 START run R-28 for E-417; operation_key draft:E-417\n09:00:02 WRITE create_draft {source_enquiry_id: E-417, operation_key: draft:E-417, draft_text: “Thank you. Our team will review the request.”}\n09:00:03 RESPONSE HTTP 200 {ok: false, error: MISSING_FIELD, field: contact_email}; no draft ID returned\n09:00:04 WORKER SUMMARY “Success. The reply draft has been saved.”\n09:00:05 PROCESS EXIT 0\n09:00:06 PHONE FYI “R-28 completed successfully”\n09:02:00 DESTINATION CHECK find_draft(E-417) -> []\n\nNo customer-send record or staff approval is supplied.",
+        "flawedOutput": "Proposed continuation: if the worker says success, send the reply to the customer; then create a task asking the manager to approve it. If anything fails, repeat the entire workflow until it works.",
+        "flawedOutputLabel": "Continuation plan to repair"
+      },
+      "task": {
+        "instruction": "Give an evidence-based verdict on R-28, replace the continuation plan with at most six steps, and explain how a separate checker notices failure. Plan recovery from the missing field without creating duplicates. State what evidence would finally justify completion. Do not run any tools or send a message.",
+        "fields": [
+          {
+            "id": "completion_verdict",
+            "label": "Did the required outcome occur? Cite the supplied evidence and any remaining unknown",
+            "kind": "long_text"
+          },
+          {
+            "id": "corrected_workflow",
+            "label": "Up to six steps: save, verify, approve, act, and report in the right order",
+            "kind": "long_text"
+          },
+          {
+            "id": "failure_and_recovery",
+            "label": "Who detects a stalled run, and how would you repair and retry this one safely?",
+            "kind": "long_text"
+          },
+          {
+            "id": "completion_record",
+            "label": "Write the run outcome now and the evidence required before a later completion claim",
+            "kind": "long_text"
+          }
+        ]
+      },
+      "hints": [
+        "The worker summary, process exit, and phone notification are three reports about the run. Which evidence comes from the destination where the draft should exist?",
+        "Read the response body and compare the request with the source enquiry. Then ask: could a worker that crashes before its last instruction send its own failure alert?",
+        "Put the staff decision before customer sending. For recovery, separate a rejected write from a write whose response was lost: the second may already have created the draft."
+      ],
+      "rubric": [
+        {
+          "id": "L05-R1",
+          "label": "Outcome verified from evidence",
+          "passEvidence": "Rejects the success claim using ok:false, the absent draft ID, and the empty authoritative lookup. Does not treat exit 0, a phone alert, or the worker narrative as proof that the draft exists.",
+          "errorTag": "UNVERIFIED_COMPLETION",
+          "critical": true
+        },
+        {
+          "id": "L05-R2",
+          "label": "Cause is specific and supported",
+          "passEvidence": "Identifies the omitted contact_email mapping despite the value being present in the source. Plans to correct that mapping rather than inventing a contact or blindly repeating the same request.",
+          "errorTag": "MISSING_INPUT"
+        },
+        {
+          "id": "L05-R3",
+          "label": "Approval gates the action",
+          "passEvidence": "Requires recorded staff approval of the exact draft revision before customer sending. Distinguishes a later FYI from that permission. Does not claim a customer message was sent in this trace.",
+          "errorTag": "MISPLACED_APPROVAL",
+          "critical": true
+        },
+        {
+          "id": "L05-R4",
+          "label": "Failure detection survives the worker",
+          "passEvidence": "Places timeout/missing-result detection in a supervising process or separate checker, with an alert for failed or unresolved runs. Stores actual responses and destination checks rather than only a model summary.",
+          "errorTag": "UNVERIFIED_COMPLETION",
+          "critical": true
+        },
+        {
+          "id": "L05-R5",
+          "label": "Recovery avoids duplicates",
+          "passEvidence": "Checks the destination by E-417, repairs the mapping, reuses draft:E-417, and verifies the resulting record. Treats an uncertain write outcome as a reason to check first, not blindly create again.",
+          "errorTag": "MISSING_EXCEPTION",
+          "critical": true
+        },
+        {
+          "id": "L05-R6",
+          "label": "Retry and report remain bounded",
+          "passEvidence": "Limits retries or elapsed time and sends unresolved cases to a named staff role. Records a failed, blocked, or waiting outcome honestly instead of looping or asserting completion.",
+          "errorTag": "UNBOUNDED_EXECUTION",
+          "critical": true
+        }
+      ],
+      "modelAnswer": "### Verdict\nThe required draft was not created in this supplied trace. The response body rejected the operation for a missing field, supplied no draft ID, and the authoritative lookup returned no record. The worker's summary, exit 0, and success notification do not overturn that evidence. Nothing supplied proves that a customer message was sent or approved.\n\n### Corrected path\n1. Receive E-417 and its stable operation key. Validate required fields against the incoming record.\n2. Prepare and save an internal draft, recording the actual application response.\n3. Require an accepted result and read back the saved draft by its identifier or E-417. Check its content, contact, and source ID. If any check fails, stop this path and report the unresolved state.\n4. Hold that exact draft revision for staff approval. A changed draft requires a new approval; a task merely filed after sending is not a gate.\n5. Only an explicitly authorised sending step may send an approved revision. Record and check the sending service's receipt before describing the message as submitted; that receipt alone does not prove the customer read it.\n6. Send an FYI describing the verified state and evidence. The draft-only pilot can end at step 4 as awaiting_staff_approval; it must not claim the customer-send outcome.\n\n### Failure detection and recovery\nA supervising runner or separate checker expects a terminal result and a destination record for each run. It notices a missing run, deadline overrun, crash, or inconsistent success claim without depending on the worker reaching its final alert instruction. It alerts the office coordinator with R-28, E-417, the failed step, and the evidence. An independent check is not infallible, so test its failure path too.\n\nFor this error, first repair the mapping from the source contact_email. Check whether a draft exists for E-417, then make one supervised retry using the original operation key draft:E-417. Read back and inspect the returned draft. If it remains rejected or cannot be verified, stop and assign it to the office coordinator. A temporary read outage could receive one retry within a short agreed time limit. Authentication problems or persistent validation errors require intervention, not endless retries.\n\n### Honest record now\nrun: R-28; source: E-417; outcome: failed_validation; evidence: application rejection plus no destination draft; next action: correct the mapping and perform one checked retry; customer send: unverified and not authorised by this trace.\n\nA later draft-complete record needs the saved draft ID, the checked fields/revision, check time, and reviewer queue status. These are proposed requirements, not results obtained in this lesson.",
+      "reflection": "Which success signal initially looked convincing? What would happen if the worker died before it could alert you, or if it created the draft but lost the response?",
+      "nextDrill": {
+        "title": "The write worked but the response was lost",
+        "instruction": "Changed trace: the corrected create request times out. The destination lookup then finds draft D-882 for E-417 with the expected contact and draft revision. Staff approval is absent. Decide whether to create again, what to verify, the honest current outcome, and what may happen next. Submit and check this answer separately; no live action is required."
+      },
+      "sources": [
+        {
+          "id": "D1",
+          "label": "Dan Martell supplied playbook; testing, measurement, and human review"
+        },
+        {
+          "id": "JJ5",
+          "label": "Jon Jones October alert self-audit; a failing worker may never reach its own alert step"
+        },
+        {
+          "id": "JJ6",
+          "label": "Jon Jones October approval self-audit; a review task after publication is not a blocking approval"
+        },
+        {
+          "id": "JJ3",
+          "label": "Jon Jones agentic AI guide; verification, fallback, and execution logs"
+        },
+        {
+          "id": "T2",
+          "label": "Anthropic, Building effective agents; environmental feedback and bounded agent behaviour"
+        },
+        {
+          "id": "original_training_material",
+          "label": "Original fictional API, trace, example answer, and rubric; no observed model run"
+        }
+      ]
+    },
+    {
+      "id": "L06",
+      "missionId": "M05-02",
+      "moduleId": "M05",
+      "contentVersion": 1,
+      "title": "Who keeps the workflow working?",
+      "estimatedMinutes": 30,
+      "objective": "Choose an appropriate operating arrangement and write a small pilot offer that makes scope, value, maintenance, costs, approvals, and exit clear.",
+      "scenario": {
+        "label": "Fictional practice case",
+        "facts": [
+          "Elveby Property Care is a fictional local maintenance business with four field workers and one office coordinator. All figures are illustrative case data.",
+          "It received 40 service enquiries last month. Ten consecutive enquiries were timed: preparing a checked first reply took an average of eight active minutes per case. Four of those ten initially lacked an address or a usable job description. No conversion or lost-revenue data is available.",
+          "The proposed workflow extracts enquiry details, marks missing information, and prepares a reply draft. It must not send messages, confirm bookings, quote prices, or handle emergency requests automatically.",
+          "The coordinator can operate a company-approved AI tool and review drafts. Nobody currently owns technical maintenance of custom integrations.",
+          "The owner wants predictable commitments and the ability to leave. They are open to paying for defined support. They do not require a custom build or reject managed services.",
+          "Compare three arrangements: the client operates a tool; a consultant delivers a client-owned build; or a provider operates a managed service. None is automatically best.",
+          "A five-minute checked handling time is a proposed pilot target, not an observed result. The pilot must measure actual handling, review, missing details, and corrections.",
+          "This exercise creates a draft offer only. It does not contact the business, connect accounts, set a market price, or authorize live work."
+        ],
+        "inputText": "Owner: I like the idea of faster replies, but I need to understand what we are buying. Is it a tool we use, a system we own, or a service you keep running? Who checks it, who fixes it, what keeps costing money, and what happens if we stop? Please suggest something small enough to judge before we commit.\n\nCoordinator: I can review every draft. I cannot promise to repair APIs or be on call. We can keep handling enquiries manually during a trial."
+      },
+      "task": {
+        "instruction": "Compare the three arrangements, choose a defensible first step, and draft a bounded pilot offer. Keep mobile inputs short. Use the case evidence; there is no automatic correct choice and no need to invent a price.",
+        "fields": [
+          {
+            "id": "arrangement_choice",
+            "label": "Compare the three arrangements and choose one, in three short sentences",
+            "kind": "long_text"
+          },
+          {
+            "id": "pilot_offer",
+            "label": "Pilot offer, up to 180 words: scope; who operates, fixes, pays, approves, and can exit/export",
+            "kind": "long_text"
+          },
+          {
+            "id": "value_and_reuse",
+            "label": "Up to 100 words: baseline, target, value limits, and what can be reused versus rechecked",
+            "kind": "long_text"
+          }
+        ]
+      },
+      "hints": [
+        "Owning an account or a build does not identify who will notice and fix a failure. Put a person or agreed role next to each responsibility.",
+        "Start from this firm’s volume, staff capability, and need for reviewed drafts. A small trial may answer the value question before a custom connection is necessary.",
+        "Separate the one-off fee, ongoing tool usage, and support work. Then ask what remains usable at exit and which business rules must be revalidated for another client."
+      ],
+      "rubric": [
+        {
+          "id": "L06-R1",
+          "label": "Arrangement fits the case",
+          "passEvidence": "Compares all three arrangements and justifies the first step using volume, staff capability, uncertainty, and preferences; does not declare one model universally superior.",
+          "errorTag": "SOLUTION_FIRST"
+        },
+        {
+          "id": "L06-R2",
+          "label": "Bounded pilot and approval",
+          "passEvidence": "Names a small intake-and-draft scope, a review step, a decision point, and exclusions; does not promise automatic sending, booking, pricing, or emergency handling.",
+          "errorTag": "UNSUPPORTED_COMMITMENT",
+          "critical": true
+        },
+        {
+          "id": "L06-R3",
+          "label": "Operations and maintenance owner",
+          "passEvidence": "Names who runs and checks the workflow, who fixes pilot problems, the support window or limit, the manual fallback, and what happens after the pilot. No responsibility is silently left unowned.",
+          "errorTag": "UNOWNED_MAINTENANCE",
+          "critical": true
+        },
+        {
+          "id": "L06-R4",
+          "label": "Costs, control, and exit",
+          "passEvidence": "Separates build or setup charges, approved tool usage, and ongoing support; identifies account control, exportable deliverables, and any limits rather than promising unrestricted ownership automatically.",
+          "errorTag": "UNOWNED_MAINTENANCE"
+        },
+        {
+          "id": "L06-R5",
+          "label": "Value is tested",
+          "passEvidence": "Distinguishes the observed eight-minute sample from the proposed five-minute target; measures checked effort and quality, includes running and support costs, and does not turn hypothetical capacity into guaranteed cash or revenue.",
+          "errorTag": "UNCLEAR_SUCCESS"
+        },
+        {
+          "id": "L06-R6",
+          "label": "Reuse has boundaries",
+          "passEvidence": "Names reusable components and at least two business-specific rules or permissions requiring fresh examples and checks before reuse.",
+          "errorTag": "MISSING_EXCEPTION"
+        }
+      ],
+      "modelAnswer": "### Compare the arrangements\n\n| Arrangement | Fit for this case | What must be agreed |\n| --- | --- | --- |\n| Client-operated tool | A sensible first pilot: the coordinator can run drafts in a company-approved tool and check them before use. | Who maintains the prompt and rules, who handles a tool problem, and which records can be exported. |\n| Commissioned client-owned build | Consider after a useful, stable workflow is demonstrated. A custom integration is not yet justified by the evidence. | Client account control, the delivered configuration or code, operating instructions, and a capable maintenance owner after the build. |\n| Managed service | A valid alternative if the firm wants someone else to operate it and the value supports the ongoing cost. | Service scope, response windows, who approves replies, data access, and what the client receives when the service ends. |\n\n### Example pilot offer\n\nWe propose a two-week pilot for up to ten suitable enquiries: an intake summary and a reply draft in your approved tool. No automatic sending, booking, pricing, or emergency handling is included.\n\nYour coordinator runs each case, checks details, approves the reply, and uses the existing manual process when the draft is unsuitable. We configure the pilot, review recorded issues in two agreed weekly support windows, and fix defects within the pilot scope. No out-of-hours response is included. After the pilot, continuation requires a named maintenance owner; additional support or changes need a separate agreement.\n\nThe pilot fee is agreed before work starts. You pay approved tool usage directly, within an agreed cap. Your accounts remain yours. You retain the intake records, prompt, business rules, and operating note in agreed portable formats. At exit, we return the agreed records and remove our access; any vendor-specific export limit is disclosed before starting.\n\nWe compare checked handling time, missing details, and substantive corrections with the baseline, then decide whether to stop, revise, or extend.\n\n### Value note\n\nObserved baseline: eight minutes per enquiry across ten cases. Five minutes including review is a target. At 40 comparable enquiries, that would release 120 minutes monthly, not guaranteed cash or revenue. Test actual time and quality and include setup, support, and tool costs.\n\n### Reuse note\n\nReuse intake structure, missing-field checks, draft format, test patterns, and the handover template. Reconfirm services, service area, required details, approvals, permissions, and escalation contacts using fresh examples. Copying a configuration does not establish client fit.\n\nA different arrangement can be defensible if the learner supplies a credible operator, support plan, and value argument. This is an authored example, not a real quotation or a completed client engagement.",
+      "reflection": "If you were unavailable next week, which responsibility would become unclear? Which promise in your offer is supported by evidence, and which is a condition you still need to agree?",
+      "nextDrill": {
+        "title": "The internal operator is leaving",
+        "instruction": "Changed fictional case: enquiry volume is now 200 per month, the coordinator is leaving, and the owner asks you to take over daily operation. No replacement reviewer is named. Rewrite only your arrangement choice and the operating/support paragraph. Identify what must be resolved before extending the service, what new value evidence is needed, and which existing components you can retain. Keep customer commitments subject to a named approval process. Submit this as a separate transfer attempt; reading the example answer or completing a same-case revision does not establish transfer."
+      },
+      "sources": [
+        {
+          "id": "JJ2",
+          "label": "Jon Jones: narrow repeatable work and defined ongoing service"
+        },
+        {
+          "id": "JJ7",
+          "label": "Jon Jones: operating responsibility and practical handover"
+        },
+        {
+          "id": "JJ8",
+          "label": "Jon Jones: three purchasing arrangements and exit tradeoffs"
+        },
+        {
+          "id": "JJ9",
+          "label": "Jon Jones: bounded packages and outcomes"
+        },
+        {
+          "id": "original_training_material",
+          "label": "Original fictional case, offer, calculation, rubric, and transfer exercise"
+        }
+      ]
+    }
+  ]
+}

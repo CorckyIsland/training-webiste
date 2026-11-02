@@ -1,0 +1,41 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "urn:ai-business-practice:lessons:1",
+  "title": "AI Business Practice lesson content",
+  "type": "object",
+  "required": ["schemaVersion", "lessons"],
+  "properties": {
+    "schemaVersion": {"const": 1},
+    "lessons": {"type": "array", "minItems": 1, "items": {"$ref": "#/$defs/lesson"}}
+  },
+  "$defs": {
+    "lesson": {
+      "type": "object",
+      "required": ["id", "missionId", "moduleId", "contentVersion", "title", "estimatedMinutes", "objective", "scenario", "task", "hints", "rubric", "modelAnswer", "reflection", "nextDrill", "sources"],
+      "properties": {
+        "id": {"type": "string", "pattern": "^L[0-9]{2,}$"},
+        "missionId": {"type": "string", "pattern": "^M[0-9]{2}-[0-9]{2}$"},
+        "moduleId": {"type": "string", "pattern": "^M[0-9]{2}$"},
+        "contentVersion": {"type": "integer", "minimum": 1},
+        "title": {"type": "string", "minLength": 1},
+        "estimatedMinutes": {"type": "integer", "minimum": 1},
+        "objective": {"type": "string", "minLength": 1},
+        "scenario": {"type": "object", "required": ["label", "facts", "inputText"], "properties": {
+          "label": {"type": "string"}, "facts": {"type": "array", "items": {"type": "string"}}, "inputText": {"type": "string"}, "flawedOutput": {"type": "string"}
+        }},
+        "task": {"type": "object", "required": ["instruction", "fields"], "properties": {
+          "instruction": {"type": "string"}, "fields": {"type": "array", "items": {"type": "object", "required": ["id", "label", "kind"], "properties": {
+            "id": {"type": "string"}, "label": {"type": "string"}, "kind": {"enum": ["short_text", "long_text", "multi_select"]},
+            "options": {"type": "array", "items": {"type": "object", "required": ["id", "label"], "properties": {"id": {"type": "string"}, "label": {"type": "string"}, "correct": {"type": "boolean"}, "errorTag": {"type": "string"}}}}
+          }}}
+        }},
+        "hints": {"type": "array", "items": {"type": "string"}},
+        "rubric": {"type": "array", "minItems": 1, "items": {"type": "object", "required": ["id", "label", "passEvidence", "errorTag"], "properties": {"id": {"type": "string"}, "label": {"type": "string"}, "passEvidence": {"type": "string"}, "errorTag": {"type": "string"}}}},
+        "modelAnswer": {"type": "string"},
+        "reflection": {"type": "string"},
+        "nextDrill": {"type": "object", "description": "Changed-case transfer prompt. Showing it or completing a remedial retry does not award applied; require a separate submission and recorded check. Targeted remedial drills are supplied by diagnostic-map.json.", "required": ["title", "instruction"], "properties": {"title": {"type": "string"}, "instruction": {"type": "string"}}},
+        "sources": {"type": "array", "items": {"type": "object", "required": ["id", "label"], "properties": {"id": {"type": "string"}, "label": {"type": "string"}}}}
+      }
+    }
+  }
+}

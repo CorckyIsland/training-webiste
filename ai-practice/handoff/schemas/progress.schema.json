@@ -1,0 +1,45 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "urn:ai-business-practice:progress:1",
+  "title": "Portable learner progress",
+  "description": "Shape validation only. The application must validate references and derive state from evidence for the same revision; an imported state label alone is not proof of an activity or competence.",
+  "type": "object",
+  "required": ["schemaVersion", "exportedAt", "profile", "drafts", "attempts", "notes", "measurements"],
+  "properties": {
+    "schemaVersion": {"const": 1},
+    "exportedAt": {"type": "string", "format": "date-time"},
+    "profile": {"type": "object", "required": ["profileId", "preferredLanguage", "weeklyHours"], "properties": {
+      "profileId": {"type": "string"}, "preferredLanguage": {"type": "string"}, "weeklyHours": {"type": "array", "prefixItems": [{"type": "number", "minimum": 0}, {"type": "number", "minimum": 0}], "minItems": 2, "maxItems": 2}
+    }},
+    "drafts": {"type": "array", "items": {"type": "object", "required": ["id", "lessonId", "contentVersion", "updatedAt", "values"], "properties": {
+      "id": {"type": "string"}, "lessonId": {"type": "string"}, "contentVersion": {"type": "integer", "minimum": 1}, "updatedAt": {"type": "string", "format": "date-time"}, "values": {"type": "object"}
+    }}},
+    "attempts": {"type": "array", "items": {"$ref": "#/$defs/attempt"}},
+    "notes": {"type": "array", "items": {"type": "object", "required": ["id", "text", "updatedAt"], "properties": {"id": {"type": "string"}, "text": {"type": "string"}, "updatedAt": {"type": "string", "format": "date-time"}}}},
+    "measurements": {"type": "array", "items": {"type": "object", "required": ["id", "label", "kind", "unit", "value", "period"], "properties": {
+      "id": {"type": "string"}, "label": {"type": "string"}, "kind": {"enum": ["observed", "estimated", "fictional"]}, "unit": {"type": "string"}, "value": {"type": "number"}, "period": {"type": "string"}
+    }}}
+  },
+  "$defs": {
+    "advisoryCriterionReview": {"type": "object", "required": ["criterionId", "result", "evidenceText"], "properties": {
+      "criterionId": {"type": "string"}, "result": {"enum": ["demonstrated", "needs_revision", "not_assessable"]}, "evidenceText": {"type": "string"}
+    }},
+    "event": {"type": "object", "required": ["id", "type", "createdAt", "revisionId", "evidence"], "properties": {
+      "id": {"type": "string"}, "type": {"enum": ["opened", "submitted", "rubric_recorded", "feedback_responded", "transfer_checked", "hint_revealed", "model_answer_revealed", "feedback_imported", "skipped", "guided_practice_started"]}, "createdAt": {"type": "string", "format": "date-time"}, "revisionId": {"type": "string"}, "evidence": {"type": "object", "description": "Activity evidence. transfer_checked must retain the separate transfer submission and its check, including its fictional/simulated/live label. Hints, imported feedback, skips, and guided-practice starts do not advance state."}
+    }},
+    "attempt": {"type": "object", "required": ["id", "lessonId", "missionId", "contentVersion", "revisionId", "supersedesRevisionId", "state", "evidenceKind", "submittedAt", "submission", "rubricChecks", "feedback", "events"], "properties": {
+      "id": {"type": "string"}, "lessonId": {"type": "string"}, "missionId": {"type": "string"}, "contentVersion": {"type": "integer", "minimum": 1}, "revisionId": {"type": "string"}, "supersedesRevisionId": {"type": ["string", "null"]},
+      "state": {"enum": ["seen", "attempted", "self_checked", "reviewed", "applied"], "description": "Derived from evidence for this revision. Submission starts attempted; self_checked needs a learner-recorded rubric; reviewed needs an explicit feedback response; applied needs a separately submitted and checked transfer. Never infer competence from the state."},
+      "evidenceKind": {"enum": ["fictional", "simulated", "live"]},
+      "submittedAt": {"type": ["string", "null"], "format": "date-time"},
+      "submission": {"type": "object"},
+      "rubricChecks": {"type": "array", "description": "Learner-recorded manual checks. External reviewer results must not automatically populate or overwrite these records.", "items": {"type": "object", "required": ["criterionId", "result", "evidenceText", "revisionId"], "properties": {
+        "criterionId": {"type": "string"}, "result": {"enum": ["met", "needs_work", "uncertain"]}, "evidenceText": {"type": "string"}, "revisionId": {"type": "string"}
+      }}},
+      "feedback": {"type": "array", "items": {"type": "object", "required": ["id", "revisionId", "provenance", "text", "learnerResponse"], "properties": {
+        "id": {"type": "string"}, "revisionId": {"type": "string"}, "provenance": {"enum": ["authored_choice_key", "self_review", "external_ai_unverified", "human_review"], "description": "Origin is immutable. Reviewing or accepting AI feedback does not change external_ai_unverified into human_review or self_review."}, "text": {"type": "string"}, "criterionReviews": {"type": "array", "description": "Optional advisory results using the reviewer vocabulary, kept separate from the learner's rubricChecks.", "items": {"$ref": "#/$defs/advisoryCriterionReview"}}, "learnerResponse": {"type": ["string", "null"]}
+      }}},
+      "events": {"type": "array", "items": {"$ref": "#/$defs/event"}}
+    }}
+  }
+}
